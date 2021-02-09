@@ -36,17 +36,19 @@ namespace capgemini_test.src.Core.Data.Repositories
             }
         }
 
-        public async Task<T> InsertAsync(T item)
+        public async Task<IEnumerable<T>> InsertAsync(IEnumerable<T> itens)
         {
             try
             {
-                if (item.Id == Guid.Empty)
-                {
-                    item.Id = Guid.NewGuid();
-                }
+                foreach(T item in itens) {
+                    if (item.Id == Guid.Empty)
+                    {
+                        item.Id = Guid.NewGuid();
+                    }
 
                 _dataset.Add(item);
 
+                }
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -54,7 +56,7 @@ namespace capgemini_test.src.Core.Data.Repositories
                 throw new Exception("Error on Insert", e);
             }
 
-            return item;
+            return itens;
         }
 
         public async Task<bool> ExistAsync(Guid id)
@@ -103,11 +105,6 @@ namespace capgemini_test.src.Core.Data.Repositories
             }
 
             return item;
-        }
-
-        Task<IEnumerable<T>> IRepository<T>.SelectAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

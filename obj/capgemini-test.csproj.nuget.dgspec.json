@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "ExcelDataReader": {
+              "target": "Package",
+              "version": "[3.7.0-develop00310, )"
+            },
             "Faker.NETCore": {
               "target": "Package",
               "version": "[1.0.2, )"
@@ -52,6 +56,10 @@
               "noWarn": [
                 "NU1605"
               ]
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -78,6 +86,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "xunit": {
               "target": "Package",

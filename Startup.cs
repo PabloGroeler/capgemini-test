@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using capgemini_test.src.Core.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using capgemini_test.src.Core.CrossCutting.DependencyInjection;
+using capgemini_test.src.Core.CrossCutting.Mappings;
+using AutoMapper;
+using Newtonsoft.Json;
 
 namespace capgemini_test
 {
@@ -27,10 +26,29 @@ namespace capgemini_test
         public void ConfigureServices(IServiceCollection services)
         {
 
+            ConfigureDependencyRepositories.ConfigureRepositories(services);
+            ConfigureDependencyServices.ConfigureServices(services);
+
+            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DataContext")));
             services.AddControllers();
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new EntityToDtoProfile());
+                cfg.AddProfile(new ModelToEntityProfile());
+                cfg.AddProfile(new DtoToModelProfile());
+            });
+
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "capgemini_test", Version = "v1" });
+            });
+
+            services.AddMvc().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; 
             });
         }
 

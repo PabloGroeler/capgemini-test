@@ -10,6 +10,6 @@ namespace capgemini_test.src.Core.Data.Context
             : base(options)
         {
         }
-        public DbSet<ProdutoEntity> ContasPagar { get; set; }
+        public DbSet<ProdutoEntity> Produtos { get; set; }
     }
 }

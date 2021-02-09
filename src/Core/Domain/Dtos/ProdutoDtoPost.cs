@@ -1,19 +1,17 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace capgemini_test.src.Core.Domain.Models
+namespace capgemini_test.src.Core.Domain.Dtos
 {
-    public class ProdutoModel : BaseModel
+    public class ProdutoDtoPost
     {
         [Required]
         public DateTime DataEntrega { get; set; }
         [Required]
-        [MinLength(50)]
         public string Descricao { get; set; }
         [Required]
         public decimal Quantidade { get; set; }
         [Required]
-        public decimal Unitario { get; set; }
-        
+        public decimal Unitario { get; set; } 
     }
 }
