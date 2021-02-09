@@ -48,9 +48,9 @@ namespace capgemini_test
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "capgemini_test", Version = "v1" });
             });
 
-            services.AddMvc().AddNewtonsoftJson(options => {
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; 
-            });
+            // services.AddMvc().AddNewtonsoftJson(options => {
+            //     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; 
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8879,19 +8879,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Celta\\.nuget\\packages\\": {}
+    "C:\\Users\\pablo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Git\\capgemini-test\\capgemini-test.csproj",
+      "projectUniqueName": "C:\\Git\\capgemini-test\\capgemini-test.csproj",
       "projectName": "capgemini-test",
-      "projectPath": "c:\\Git\\capgemini-test\\capgemini-test.csproj",
-      "packagesPath": "C:\\Users\\Celta\\.nuget\\packages\\",
-      "outputPath": "c:\\Git\\capgemini-test\\obj\\",
+      "projectPath": "C:\\Git\\capgemini-test\\capgemini-test.csproj",
+      "packagesPath": "C:\\Users\\pablo\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\capgemini-test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Celta\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\pablo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8997,7 +8997,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

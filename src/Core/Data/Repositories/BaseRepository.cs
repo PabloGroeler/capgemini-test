@@ -18,22 +18,25 @@ namespace capgemini_test.src.Core.Data.Repositories
             _dataset = _context.Set<T>();
         }
         
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<T> InsertAsync(T item)
         {
             try
             {
-                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
-                if (result == null)
-                    return false;
+                if (item.Id == Guid.Empty)
+                {
+                    item.Id = Guid.NewGuid();
+                }
 
-                _dataset.Remove(result);
+                _dataset.Add(item);
+
                 await _context.SaveChangesAsync();
-                return true;
             }
             catch (Exception e)
             {
-                throw new Exception("Error on Delete", e);
+                throw new Exception("Error on Insert", e);
             }
+
+            return item;
         }
 
         public async Task<IEnumerable<T>> InsertAsync(IEnumerable<T> itens)
@@ -46,9 +49,8 @@ namespace capgemini_test.src.Core.Data.Repositories
                         item.Id = Guid.NewGuid();
                     }
 
-                _dataset.Add(item);
-
                 }
+                _dataset.AddRange(itens);
                 
                 await _context.SaveChangesAsync();
             }
@@ -87,25 +89,6 @@ namespace capgemini_test.src.Core.Data.Repositories
             {
                 throw new Exception("Error on Select", e);
             }
-        }
-
-        public async Task<T> UpdateAsync(T item)
-        {
-            try
-            {
-                var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(item.Id));
-                if (result == null)
-                    return null;
-
-                _context.Entry(result).CurrentValues.SetValues(item);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error on Update", e);
-            }
-
-            return item;
         }
     }
 }
