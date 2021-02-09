@@ -10,6 +10,6 @@ namespace capgemini_test.src.Core.Domain.Interfaces.Services
     {
         Task<ProdutoDtoGet> Get(Guid id);
         Task<IEnumerable<ProdutoDtoGet>> GetAll();
-        Task<IEnumerable<ProdutoDtoGet>> Post(IEnumerable<ProdutoEntity> produtos);
+        Task<IEnumerable<ProdutoDtoGet>> Post(List<ProdutoDtoPost> produtos);
     }
 }

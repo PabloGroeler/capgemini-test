@@ -10,6 +10,7 @@ using capgemini_test.src.Core.CrossCutting.DependencyInjection;
 using capgemini_test.src.Core.CrossCutting.Mappings;
 using AutoMapper;
 using Newtonsoft.Json;
+using capgemini_test.src.Core.CrossCutting.Filters;
 
 namespace capgemini_test
 {
@@ -30,7 +31,7 @@ namespace capgemini_test
             ConfigureDependencyServices.ConfigureServices(services);
 
             services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DataContext")));
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add(new HttpResponseExceptionFilter()));
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {

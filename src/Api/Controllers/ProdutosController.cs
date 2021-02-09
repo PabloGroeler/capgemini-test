@@ -71,7 +71,7 @@ namespace capgemini_test.src.Api.Controllers
                 return BadRequest(ModelState);
             }    
 
-            List<ProdutoEntity> produtos = new List<ProdutoEntity>();
+            List<ProdutoDtoPost> produtos = new List<ProdutoDtoPost>();
 
             try
             {
@@ -82,7 +82,7 @@ namespace capgemini_test.src.Api.Controllers
                     stream.Position = 0;
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        while (reader.Read()) //Each row of the file
+                        while (reader.Read())
                         {
                             DateTime data;
                             
@@ -91,7 +91,7 @@ namespace capgemini_test.src.Api.Controllers
                                                         CultureInfo.InvariantCulture,
                                                         DateTimeStyles.None, out data)) {
 
-                                produtos.Add(new ProdutoEntity{
+                                produtos.Add(new ProdutoDtoPost {
                                     DataEntrega = data,
                                     Descricao = reader.GetValue(1).ToString(), 
                                     Quantidade = Convert.ToDecimal(reader.GetValue(2).ToString()), 

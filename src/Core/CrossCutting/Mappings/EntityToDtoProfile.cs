@@ -8,7 +8,8 @@ namespace capgemini_test.src.Core.CrossCutting.Mappings
     {
         public EntityToDtoProfile()
         {
-            CreateMap<ProdutoEntity, ProdutoDtoGet>().ReverseMap();        
+            CreateMap<ProdutoEntity, ProdutoDtoGet>().ReverseMap();
+            CreateMap<ProdutoEntity, ProdutoDtoPost>().ReverseMap();        
         }
     }
 }
