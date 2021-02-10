@@ -100,10 +100,9 @@ namespace capgemini_test.src.Api.Controllers
                             }
                         }
                     }
-                }
-                await _service.Post(produtos);
+                }                
                
-                return Ok("Produtos inseridos com sucesso!");
+                return Ok(await _service.Post(produtos));
             }
             catch (ArgumentException e)
             {
