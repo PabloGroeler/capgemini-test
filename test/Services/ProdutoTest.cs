@@ -12,17 +12,6 @@ namespace capgemini_test.test.Services
         private IProdutoService _service;
         private Mock<IProdutoService> _serviceMock;
 
-        [Fact(DisplayName = "Execute Create Test.")]
-        public async Task ExecuteCreateTest()
-        {
-            _serviceMock = new Mock<IProdutoService>();
-            _serviceMock.Setup(m => m.Post(produtos)).ReturnsAsync(produtosDtoGet);
-            _service = _serviceMock.Object;
-
-            var result = await _service.Post(produtos);
-            Assert.NotNull(result);
-        }
-
         [Fact(DisplayName = "Execute GET Test.")]
         public async Task ExecuteGetTest()
         {

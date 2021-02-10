@@ -64,7 +64,7 @@ namespace capgemini_test.src.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromForm] IFormFile file) {
+        public async Task<ActionResult> Post([FromForm] IFormFile file) {
 
             if (!ModelState.IsValid)
             {
@@ -101,8 +101,8 @@ namespace capgemini_test.src.Api.Controllers
                         }
                     }
                 }
+                await _service.Post(produtos);
                
-                _service.Post(produtos);
                 return Ok("Produtos inseridos com sucesso!");
             }
             catch (ArgumentException e)

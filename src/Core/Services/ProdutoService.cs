@@ -31,18 +31,11 @@ namespace capgemini_test.src.Core.Services
             var entity = await _repository.SelectAsync();
             return _mapper.Map<IEnumerable<ProdutoDtoGet>>(entity);
         }
-
         public async Task<IEnumerable<ProdutoDtoGet>> Post(List<ProdutoDtoPost> produtos)
         {
-            List<ProdutoEntity> produtosEntities = _mapper.Map<List<ProdutoEntity>>(produtos);
-
-            List<ProdutoDtoGet> results = new List<ProdutoDtoGet>();
-            
-            // foreach (ProdutoEntity entity in produtosEntities) {
-                results.Add(_mapper.Map<ProdutoDtoGet>(await _repository.InsertAsync(produtosEntities)));
-            // }
-
-            return results;
+            IEnumerable<ProdutoEntity> entities = _mapper.Map<IEnumerable<ProdutoEntity>>(produtos);
+            IEnumerable<ProdutoEntity> inserts = await _repository.InsertAsync(entities);
+            return _mapper.Map<IEnumerable<ProdutoDtoGet>>(inserts);
         }
     }
 }
